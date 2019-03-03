@@ -2,6 +2,12 @@
 
 deploy-dist 是帮助一个ftp工具，用与部署web项目。
 
+# install
+
+```
+npm install deploy-dist -g
+```
+
 # usage
 
 ``` bash
