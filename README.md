@@ -1,6 +1,6 @@
 # description
 
-deploy-dist 是一个ftp工具，用与部署web项目。
+deploy-dist 是一个ftp工具，用于部署web项目。
 
 # install
 
