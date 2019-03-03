@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["deploy"],
+  "author": "russellmars@sina.com",
   "license": "ISC",
   "bin": {
     "deploy-dist": "./bin/deploy-dist.js"
@@ -16,5 +16,6 @@
     "commander": "^2.19.0",
     "node-ssh": "^5.1.2",
     "yamljs": "^0.3.0"
-  }
+  },
+  "repository": "https://github.com/russellmars/deploy-dist.git"
 }
