@@ -1,0 +1,11 @@
+envs:
+  production:
+    ip: 192.168.60.22
+    port: 22
+    dir: dist
+    remoteDir: /home/ssh
+  test:
+    ip: 118.25.209.27
+    port: 22
+    dir: dist
+    remoteDir: /home/ssh
