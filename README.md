@@ -23,9 +23,9 @@ deploy-dist account -l
 
 # 项目部署配置文件在项目目录下的deploy-dist.yml
 # 增加一个当前项目的部署配置
-deploy-dist -a
+deploy-dist add
 
 # 部署一个环境的代码
-deploy-dist -d <env>
+deploy-dist deploy <env>
 
 ```

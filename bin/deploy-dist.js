@@ -18,39 +18,42 @@ var accountFile = path.join(USER_HOME, '.deploy-dist.yml')
 var existConfigFile = fsExistsSync(configFile)  // config文件是否存在
 var existAccountFile = fsExistsSync(accountFile)  // account config 文件是否存在
 
-program.version(PKG.version, '-v, --version')
-  .option('-d, --deploy <env>', 'Deploy dist for env config')
-  .option('-a, --add', 'Add a deploy config')
-  .description('Deploy or Add a deploy config')
-  .action(function(cmd, cmd2) {
-    if (cmd.deploy) {
-      handleDeploy(cmd.deploy)
-    } else if (cmd.add) {
-      handleAddDeploy()
-    }
-  })
-  .parse(process.argv);
+
 
 /**
  * --version 版本
  * account [--add] [--list] [--remove]
  */
+
+program.version(PKG.version, '-v, --version')
+
+program
+  .command('add')
+  .description('Add a deploy config')
+  .action(handleAddDeploy);
+
+program
+  .command('deploy <env>')
+  .description('Add a deploy config')
+  .action(handleDeploy);
+
 program
   .command('account')
   .option('-a, --add', 'Add account')
   .option('-r, --remove <ip>', 'Remove account')
   .option('-l, --list', 'List accounts')
-  .name('deploy-dist')
   .description('Add, Remove, Or List Account')
-  .action(function(cmd, cmd2) {
+  .action(function(cmd) {
     if (cmd.add) {
       addAccount()
     } else if (cmd.remove) {
+      console.log(cmd.remove)
       deleteAccount(cmd.remove)
     } else if (cmd.list) {
       listAccount()
     }
   });
+
 
 program
   .command('help', { isDefault: true })
@@ -148,7 +151,15 @@ function handleDeploy(env) {
   var accountData = getYamlFileData(accountFile)
 
   var envs = configData.envs
+  if (!envs) {
+    console.log(env + ' env config not exist')
+    return
+  }
   var config = envs[env]
+  if (!config) {
+    console.log('`' + env + '` env config not exist')
+    return
+  }
 
   if (config) {
     var ip = config.ip
